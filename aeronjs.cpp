@@ -41,7 +41,6 @@ void uv_async_callback(uv_async_t*) {
   HandleScope scope(isolate);
   auto globalCtx = isolate->GetCurrentContext()->Global();
   Local<Function> cb = Local<Function>::New(Isolate::GetCurrent(), g_on_data);
-  Local<Function> bufferCtor = Local<Function>::Cast(globalCtx->Get(String::NewFromUtf8(isolate, "Buffer")));
   for (AeronData const& data : queue) {
     auto buffer = Nan::NewBuffer(data.buf, data.len);
     Local<Value> argv[] = { buffer.ToLocalChecked() };
