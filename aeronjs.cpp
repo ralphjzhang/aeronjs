@@ -42,7 +42,7 @@ void uv_async_callback(uv_async_t*) {
   auto globalCtx = isolate->GetCurrentContext()->Global();
   Local<Function> cb = Local<Function>::New(Isolate::GetCurrent(), g_on_data);
   for (AeronData const& data : queue) {
-    auto buffer = Nan::NewBuffer(data.buf, data.len);
+    auto buffer = Nan::NewBuffer(data.buf, data.len, [](char *data, void *hint) {}, nullptr);
     Local<Value> argv[] = { buffer.ToLocalChecked() };
     Nan::MakeCallback(globalCtx, cb, 1, argv);
   }
