@@ -9,7 +9,7 @@
       "include_dirs": [
         "<!@(node -p \"require('nan').include\")"
       ],
-      "libraries": [ "/home/devops/labs/aeronjs/libaeron_client_cgo.a" ],
+      "libraries": [ "/opt/yi/lib/libaeron_client_cgo.a" ],
       'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ],
     }
   ]
